@@ -18,6 +18,7 @@ venv/
 
 # Docker & Editor files
 Dockerfile
+compose.yaml
 .dockerignore
 *.log
 *.tmp

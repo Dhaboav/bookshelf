@@ -1,12 +1,12 @@
-import os
 from typing import Annotated, Generator
 
-from dotenv import load_dotenv
 from fastapi import Depends
 from sqlmodel import Session, SQLModel, create_engine
 
-load_dotenv()
-database_url = os.getenv("DATABASE_URL")
+from app.config import Settings
+
+settings = Settings()
+database_url = settings.get_database_url()
 engine = create_engine(database_url)
 
 
