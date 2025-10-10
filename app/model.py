@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from typing import Optional
 
-from sqlmodel import Field, SQLModel
+from sqlmodel import Column, DateTime, Field, SQLModel
 
 
 def _utcnow():
@@ -17,5 +17,14 @@ class Book(SQLModel, table=True):
     genre: str = Field(default=None, max_length=255)
     author: str = Field(default=None, max_length=255)
     isbn: str = Field(default=None, max_length=13, unique=True)
-    created_at: Optional[datetime] = Field(default_factory=_utcnow)
-    last_updated: Optional[datetime] = Field(default_factory=_utcnow)
+    created_at: Optional[datetime] = Field(
+        default_factory=_utcnow,
+        sa_column=Column(DateTime(timezone=True), nullable=False, default=_utcnow),
+    )
+
+    last_updated: Optional[datetime] = Field(
+        default_factory=_utcnow,
+        sa_column=Column(
+            DateTime(timezone=True), nullable=False, default=_utcnow, onupdate=_utcnow
+        ),
+    )

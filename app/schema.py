@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel, Field
 
 
@@ -8,6 +10,18 @@ class SchemaBook(BaseModel):
     genre: str
     author: str
     isbn: str = Field(..., max_length=13)
+
+
+class SchemaPublicBook(BaseModel):
+    """Schema for public book data serialization"""
+
+    id: int
+    title: str
+    genre: str
+    author: str
+    isbn: str
+    created_at: datetime
+    last_updated: datetime
 
 
 class Response(BaseModel):

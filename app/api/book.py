@@ -1,17 +1,17 @@
 from fastapi import APIRouter
 
 from app.api.deps import Service
-from app.schema import Response, SchemaBook
+from app.schema import Response, SchemaBook, SchemaPublicBook
 
 router = APIRouter(tags=["Buku"])
 
 
-@router.get("/books/")
+@router.get("/books/", response_model=list[SchemaPublicBook])
 def get_books(service: Service):
     return service.get_all_books()
 
 
-@router.get("/book/{book_id}/")
+@router.get("/book/{book_id}/", response_model=SchemaPublicBook)
 def get_book(book_id: int, service: Service):
     book = service.get_book_by_id(book_id)
     if not book:
