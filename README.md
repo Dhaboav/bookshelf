@@ -1,35 +1,51 @@
-<br />
 <div align="center">
-<h3 align="center">📚book-shelf</h3>
+  <h3 align="center">📚 Bookshelf</h3>
 
   <p align="center">
-    A lightweight backend service for managing a personal digital library.
+    A lightweight fullstack application for managing a personal digital library.
   </p>
 </div>
 
 ---
 
-### Requirements
+## 🚀 Tech Stack – FARM Architecture
 
-Before you begin, make sure you have the following installed on your machine:
+**Bookshelf** is built using the **FARM** stack:
 
-- [Docker](https://www.docker.com/get-started) (v28.2.2 or higher recommended)
-
----
-
-### Overview
-
-**`book-shelf`** is a backend project for managing a personal digital library.  
-It provides API endpoints for handling books, authors, genres, and publishers — built for simplicity, scalability, and easy integration with future frontends or mobile apps.
+- ⚙️ **FastAPI** – Backend API
+- 🎨 **React** – Frontend UI
+- 🗄️ **MySQL** – Relational Database
+- 🐳 **Docker** – Containerization
 
 ---
 
-### Installation Guide
+## 📋 Requirements
+
+Before getting started, ensure you have the following installed:
+
+- [Docker](https://www.docker.com/get-started) – Version **28.2.2** or higher is recommended
+
+---
+
+## 🧭 Overview
+
+**Bookshelf** is a fullstack FARM project designed to help users manage their personal digital libraries.  
+It includes API endpoints for managing:
+
+- Books 📖
+
+Built with simplicity and developer-friendliness in mind.
+
+---
+
+## ⚙️ Installation Guide
+
+Follow the steps below to set up the project locally:
 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/Dhaboav/book-shelf.git
+    git clone https://github.com/Dhaboav/bookshelf.git
     ```
 
 2. **Set up the environment file:**

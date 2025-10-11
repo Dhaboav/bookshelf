@@ -19,6 +19,7 @@ services:
       timeout: 10s
     volumes:
       - mysql-data:/var/lib/mysql
+      
   backend-fastapi:
     container_name: backend-fastapi
     build: ./backend
