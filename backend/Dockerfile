@@ -28,7 +28,7 @@ COPY --from=builder /usr/local/lib/python3.13/site-packages /usr/local/lib/pytho
 COPY --from=builder /usr/local/bin/uvicorn /usr/local/bin/uvicorn
 
 # Only copy application code
-COPY --from=builder /app/app /app/app
+COPY --from=builder /app/src /app/src
 COPY --from=builder /app/requirements.txt /app/requirements.txt
 
 # Clean up unnecessary Python files (optional)
@@ -38,3 +38,5 @@ RUN find /usr/local/lib/python3.13/site-packages -name '*.pyc' -delete \
     && rm -rf /root/.cache
 
 EXPOSE 8000
+
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0"]

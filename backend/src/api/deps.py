@@ -1,9 +1,8 @@
 from typing import Annotated
 
 from fastapi import Depends
-
-from app.crud import BookCrud
-from app.database import SessionDep
+from src.crud import BookCrud
+from src.database import SessionDep
 
 
 def get_book_service(db: SessionDep) -> BookCrud:

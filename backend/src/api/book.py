@@ -1,7 +1,6 @@
 from fastapi import APIRouter
-
-from app.api.deps import Service
-from app.schema import Response, SchemaBook, SchemaPublicBook
+from src.api.deps import Service
+from src.schema import Response, SchemaBook, SchemaPublicBook
 
 router = APIRouter(tags=["Buku"])
 

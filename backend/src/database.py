@@ -2,8 +2,7 @@ from typing import Annotated, Generator
 
 from fastapi import Depends
 from sqlmodel import Session, SQLModel, create_engine
-
-from app.config import Settings
+from src.config import Settings
 
 settings = Settings()
 database_url = settings.get_database_url()

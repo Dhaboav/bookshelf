@@ -1,9 +1,8 @@
 from typing import Optional
 
 from sqlmodel import Session, select
-
-from app.model import Book
-from app.schema import Response, SchemaBook
+from src.model import Book
+from src.schema import Response, SchemaBook
 
 
 class BookCrud:

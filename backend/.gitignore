@@ -1,0 +1,69 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Poetry virtual environment (if using in-project venv)
+.env
+.venv
+
+# Virtual environment (if using global venv)
+venv/
+ENV/
+env/
+
+# Poetry lock file (can be kept in version control, but some prefer to ignore it)
+poetry.lock
+
+# Development and editor settings
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and runtime files
+logs/
+*.log
+*.out
+*.pid
+*.seed
+*.bak
+nohup.out
+
+# Python egg and build artifacts
+*.egg
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# Cache files
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.tox/
+.dmypy.json
+hypothesis/
+
+# Database files
+*.sqlite3
+*.db
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.test
+.envrc
+*.secrets
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Docker and deployment
+docker-compose.override.yml
+*.dockerenv
+
+# Project-specific files
