@@ -11,6 +11,12 @@ services:
       - MYSQL_DATABASE=${MYSQL_DATABASE?Variable not set}
       - MYSQL_USER=${MYSQL_USER?Variable not set}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD?Variable not set}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      start_period: 30s
+      retries: 5
+      timeout: 10s
     volumes:
       - mysql-data:/var/lib/mysql
   backend-fastapi:
@@ -28,7 +34,18 @@ services:
       - MYSQL_USER=${MYSQL_USER?Variable not set}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD?Variable not set}
     depends_on:
-      - db-mysql
+      db-mysql:
+        condition: service_healthy
+        restart: true
+    
+  frontend-react:
+    container_name: frontend-react
+    build: ./frontend
+    image: ${DOCKER_IMAGE_FRONTEND?Variable not set}:${TAG-latest}
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend-fastapi # Can be removed because frontend can run without backend
 
 volumes:
   mysql-data:
