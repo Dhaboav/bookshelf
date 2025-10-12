@@ -2,6 +2,7 @@ from typing import Annotated, Generator
 
 from fastapi import Depends
 from sqlmodel import Session, SQLModel, create_engine
+
 from src.config import Settings
 
 settings = Settings()

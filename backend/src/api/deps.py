@@ -1,6 +1,7 @@
 from typing import Annotated
 
 from fastapi import Depends
+
 from src.crud import BookCrud
 from src.database import SessionDep
 

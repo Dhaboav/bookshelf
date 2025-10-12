@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+
 from src.api.book import router
 from src.database import close_db, create_all_tables
 
