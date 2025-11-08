@@ -1,68 +1,159 @@
+/* Tailwind v4 entry */
+@import 'tailwindcss';
+
+/* 
+  Tailwind CSS v4 design system
+  Define all color tokens, gradients, shadows, etc.
+*/
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    --background: 210 40% 98%;
+    --foreground: 215 25% 15%;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    --primary: 214 95% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 30% 92%;
+    --secondary-foreground: 215 25% 15%;
+
+    --muted: 210 30% 95%;
+    --muted-foreground: 215 15% 45%;
+
+    --accent: 200 95% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 30% 88%;
+    --input: 214 30% 88%;
+    --ring: 214 95% 50%;
+
+    --radius: 0.75rem;
+
+    --gradient-primary: 135deg, hsl(214 95% 50%), hsl(200 95% 55%);
+    --gradient-hero: 180deg, hsl(210 40% 98%), hsl(214 50% 95%);
+
+    --shadow-sm: 0 2px 8px -2px hsl(214 20% 70% / 0.15);
+    --shadow-md: 0 4px 16px -4px hsl(214 20% 60% / 0.2);
+    --shadow-lg: 0 8px 32px -8px hsl(214 20% 50% / 0.25);
+
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+.dark {
+    --background: 215 30% 8%;
+    --foreground: 210 30% 96%;
+
+    --card: 215 28% 12%;
+    --card-foreground: 210 30% 96%;
+
+    --popover: 215 28% 12%;
+    --popover-foreground: 210 30% 96%;
+
+    --primary: 214 95% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 25% 18%;
+    --secondary-foreground: 210 30% 96%;
+
+    --muted: 215 25% 16%;
+    --muted-foreground: 215 15% 60%;
+
+    --accent: 200 95% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 214 95% 55%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(214 95% 55%), hsl(200 95% 60%));
+    --gradient-hero: linear-gradient(180deg, hsl(215 30% 8%), hsl(215 30% 12%));
+
+    --shadow-sm: 0 2px 8px -2px hsl(214 20% 0% / 0.3);
+    --shadow-md: 0 4px 16px -4px hsl(214 20% 0% / 0.4);
+    --shadow-lg: 0 8px 32px -8px hsl(214 20% 0% / 0.5);
 }
-a:hover {
-  color: #535bf2;
+
+/* Base element styles */
+* {
+    border-color: hsl(var(--border));
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Theme definitions — replaces your old JS config */
+@theme {
+    /* Base container */
+    --container-padding: 2rem;
+    --container-2xl: 1400px;
+
+    /* Colors */
+    --color-border: hsl(var(--border));
+    --color-input: hsl(var(--input));
+    --color-ring: hsl(var(--ring));
+    --color-background: hsl(var(--background));
+    --color-foreground: hsl(var(--foreground));
+
+    /* Component colors */
+    --color-primary: hsl(var(--primary));
+    --color-primary-foreground: hsl(var(--primary-foreground));
+    --color-secondary: hsl(var(--secondary));
+    --color-secondary-foreground: hsl(var(--secondary-foreground));
+    --color-destructive: hsl(var(--destructive));
+    --color-destructive-foreground: hsl(var(--destructive-foreground));
+    --color-muted: hsl(var(--muted));
+    --color-muted-foreground: hsl(var(--muted-foreground));
+    --color-accent: hsl(var(--accent));
+    --color-accent-foreground: hsl(var(--accent-foreground));
+    --color-popover: hsl(var(--popover));
+    --color-popover-foreground: hsl(var(--popover-foreground));
+    --color-card: hsl(var(--card));
+    --color-card-foreground: hsl(var(--card-foreground));
+
+    /* Gradients, shadows, transitions, radius */
+    --bg-gradient-primary: var(--gradient-primary);
+    --bg-gradient-hero: var(--gradient-hero);
+    --shadow-sm: var(--shadow-sm);
+    --shadow-md: var(--shadow-md);
+    --shadow-lg: var(--shadow-lg);
+    --transition-smooth: var(--transition-smooth);
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Custom animations */
+@keyframes accordion-down {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--radix-accordion-content-height);
+    }
 }
-button:hover {
-  border-color: #646cff;
+@keyframes accordion-up {
+    from {
+        height: var(--radix-accordion-content-height);
+    }
+    to {
+        height: 0;
+    }
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@utility accordion-down {
+    animation: accordion-down 0.2s ease-out;
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+@utility accordion-up {
+    animation: accordion-up 0.2s ease-out;
 }
