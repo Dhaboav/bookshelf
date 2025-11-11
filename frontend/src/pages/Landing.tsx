@@ -1,5 +1,5 @@
 import Navigation from '@/components/Navigation';
-import { Button } from '@/components/mess/button';
+import { Button } from '@/components/ui/button';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookCopy, BookOpen, Library, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';

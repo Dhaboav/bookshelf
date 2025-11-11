@@ -1,9 +1,9 @@
 import Navigation from '@/components/Navigation';
-import { Button } from '@/components/mess/button';
-import { Input } from '@/components/mess/input';
-import { Label } from '@/components/mess/label';
-import { Textarea } from '@/components/mess/textarea';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -34,11 +34,11 @@ const AddBook = () => {
     };
 
     return (
-        <div className="bg-background min-h-screen">
+        <div className="min-h-screen bg-gray-50">
             <Navigation />
 
             <main className="container mx-auto max-w-2xl px-4 pt-24 pb-12">
-                <Button variant="ghost" onClick={() => navigate('/dashboard')} className="mb-6">
+                <Button variant="hover" onClick={() => navigate('/dashboard')} className="mb-6">
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Back to Library
                 </Button>
@@ -132,7 +132,7 @@ const AddBook = () => {
                                 </Button>
                                 <Button
                                     type="button"
-                                    variant="outline"
+                                    variant="delete"
                                     onClick={() => navigate('/dashboard')}
                                     className="flex-1"
                                 >

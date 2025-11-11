@@ -7,29 +7,10 @@
     --gradient-primary: 135deg, oklch(48.8% 0.243 264.376), oklch(82.8% 0.111 230.318);
     /* ================================== */
 
-    --background: 210 40% 98%;
-    --foreground: 215 25% 15%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
-
-    --secondary-foreground: 215 25% 15%;
-
-    --muted: 210 30% 95%;
-    --muted-foreground: 215 15% 45%;
-
-    --accent: 200 95% 55%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
     --border: 214 30% 88%;
-    --input: 214 30% 88%;
-    --ring: 214 95% 50%;
-
     --radius: 0.75rem;
-
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -39,7 +20,7 @@
 }
 
 body {
-    background-color: hsl(var(--background));
+    
     color: hsl(var(--foreground));
 }
 
@@ -47,44 +28,19 @@ body {
 @theme {
 
     /* Fixed */
-
     /* Color Related */
     --color-primary: oklch(54.6% 0.245 262.881);
+    --color-secondary: oklch(70.8% 0 0); 
     --bg-gradient-primary: var(--gradient-primary);
-
-    /* ??? */
-    --color-secondary: oklch(57.7% 0.245 27.325); 
     /* ==================================== */
     
-
-
-
-
-
 
     /* Base container */
     --container-padding: 2rem;
     --container-2xl: 1400px;
 
-    /* Colors */
-    --color-border: hsl(var(--border));
-    --color-input: hsl(var(--input));
-    --color-ring: hsl(var(--ring));
-    --color-background: hsl(var(--background));
-    --color-foreground: hsl(var(--foreground));
-
-    /* Component colors */
-    --color-secondary-foreground: hsl(var(--secondary-foreground));
-    --color-destructive: hsl(var(--destructive));
-    --color-destructive-foreground: hsl(var(--destructive-foreground));
-    --color-muted: hsl(var(--muted));
-    --color-muted-foreground: hsl(var(--muted-foreground));
-    --color-accent: hsl(var(--accent));
-    --color-accent-foreground: hsl(var(--accent-foreground));
     --color-popover: hsl(var(--popover));
     --color-popover-foreground: hsl(var(--popover-foreground));
-    
-    
 
     /* Gradients, shadows, transitions, radius */
     --transition-smooth: var(--transition-smooth);

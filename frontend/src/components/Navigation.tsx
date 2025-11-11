@@ -1,4 +1,4 @@
-import { Button } from '@/components/mess/button';
+import { Button } from '@/components/ui/button';
 import { BookOpen, FileText, Home, LayoutDashboard } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ const Navigation = () => {
     const isActive = (path: string) => location.pathname === path;
 
     return (
-        <nav className="bg-background/80 border-border fixed top-0 right-0 left-0 z-50 border-b backdrop-blur-lg">
+        <nav className="border-border fixed top-0 right-0 left-0 z-50 border-b bg-gray-50/80 backdrop-blur-lg">
             <div className="container mx-auto px-4 py-4">
                 <div className="flex items-center justify-between">
                     <Link to="/" className="group flex items-center gap-2">
@@ -20,7 +20,7 @@ const Navigation = () => {
                     </Link>
 
                     <div className="flex items-center gap-2">
-                        <Button asChild variant={isActive('/') ? 'default' : 'ghost'} size="sm">
+                        <Button asChild variant={isActive('/') ? 'default' : 'hover'} size="sm">
                             <Link to="/">
                                 <Home className="mr-2 h-4 w-4" />
                                 Home
@@ -28,7 +28,7 @@ const Navigation = () => {
                         </Button>
                         <Button
                             asChild
-                            variant={isActive('/dashboard') ? 'default' : 'ghost'}
+                            variant={isActive('/dashboard') ? 'default' : 'hover'}
                             size="sm"
                         >
                             <Link to="/dashboard">
@@ -36,7 +36,7 @@ const Navigation = () => {
                                 Dashboard
                             </Link>
                         </Button>
-                        <Button asChild variant={isActive('/docs') ? 'default' : 'ghost'} size="sm">
+                        <Button asChild variant={isActive('/docs') ? 'default' : 'hover'} size="sm">
                             <Link to="/docs">
                                 <FileText className="mr-2 h-4 w-4" />
                                 Docs

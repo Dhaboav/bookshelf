@@ -1,11 +1,11 @@
-import { Separator } from '@/components/mess/separator';
 import Navigation from '@/components/Navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import { BookOpen, Edit, Eye, LayoutGrid, List, Plus, Search, Trash } from 'lucide-react';
 
 const Docs = () => {
     return (
-        <div className="bg-background min-h-screen">
+        <div className="min-h-screen bg-gray-50">
             <Navigation />
 
             <main className="container mx-auto max-w-4xl px-4 pt-24 pb-12">

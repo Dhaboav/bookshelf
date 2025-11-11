@@ -1,9 +1,9 @@
 import BookCard from '@/components/BookCard';
 import BookListItem from '@/components/BookListItem';
 import Navigation from '@/components/Navigation';
-import { Button } from '@/components/mess/button';
-import { Input } from '@/components/mess/input';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import type { Book } from '@/types/book';
 import { BookOpen, LayoutGrid, Library, List, Plus, Search } from 'lucide-react';
 import { useState } from 'react';
@@ -117,7 +117,7 @@ const Dashboard = () => {
     ];
 
     return (
-        <div className="bg-background min-h-screen">
+        <div className="min-h-screen bg-gray-50">
             <Navigation />
 
             <main className="container mx-auto px-4 pt-24 pb-12">

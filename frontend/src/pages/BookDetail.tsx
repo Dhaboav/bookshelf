@@ -1,6 +1,6 @@
-import { Button } from '@/components/mess/button';
 import Navigation from '@/components/Navigation';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft, Edit, Star, Trash2 } from 'lucide-react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -39,7 +39,7 @@ const BookDetail = () => {
 
     if (!book) {
         return (
-            <div className="bg-background min-h-screen">
+            <div className="min-h-screen bg-gray-50">
                 <Navigation />
                 <div className="container mx-auto px-4 pt-24 text-center">
                     <h1 className="mb-4 text-2xl font-bold">Book not found</h1>
@@ -57,11 +57,11 @@ const BookDetail = () => {
     };
 
     return (
-        <div className="bg-background min-h-screen">
+        <div className="min-h-screen bg-gray-50">
             <Navigation />
 
             <main className="container mx-auto max-w-5xl px-4 pt-24 pb-12">
-                <Button variant="ghost" onClick={() => navigate('/dashboard')} className="mb-6">
+                <Button variant="hover" onClick={() => navigate('/dashboard')} className="mb-6">
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Back to Library
                 </Button>
@@ -125,7 +125,7 @@ const BookDetail = () => {
                                     Edit Book
                                 </Link>
                             </Button>
-                            <Button variant="destructive" onClick={handleDelete} className="flex-1">
+                            <Button variant="delete" onClick={handleDelete} className="flex-1">
                                 <Trash2 className="mr-2 h-4 w-4" />
                                 Delete Book
                             </Button>
