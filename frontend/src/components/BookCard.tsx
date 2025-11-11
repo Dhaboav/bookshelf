@@ -1,5 +1,5 @@
-import { Card, CardContent, CardFooter } from '@/components/mess/card';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import type { Book } from '@/types/book';
 import { Link } from 'react-router-dom';
 

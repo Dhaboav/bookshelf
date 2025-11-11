@@ -1,6 +1,6 @@
-import Navigation from '@/components/Navigation';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/mess/card';
 import { Separator } from '@/components/mess/separator';
+import Navigation from '@/components/Navigation';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, Edit, Eye, LayoutGrid, List, Plus, Search, Trash } from 'lucide-react';
 
 const Docs = () => {

@@ -1,7 +1,7 @@
 import { Button } from '@/components/mess/button';
-import { Card, CardContent } from '@/components/mess/card';
 import Navigation from '@/components/Navigation';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft, Edit, Star, Trash2 } from 'lucide-react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'sonner';

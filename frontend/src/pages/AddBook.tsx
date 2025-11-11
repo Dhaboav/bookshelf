@@ -1,9 +1,9 @@
 import Navigation from '@/components/Navigation';
 import { Button } from '@/components/mess/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/mess/card';
 import { Input } from '@/components/mess/input';
 import { Label } from '@/components/mess/label';
 import { Textarea } from '@/components/mess/textarea';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

@@ -10,9 +10,6 @@
     --background: 210 40% 98%;
     --foreground: 215 25% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
@@ -32,10 +29,6 @@
     --ring: 214 95% 50%;
 
     --radius: 0.75rem;
-
-    --shadow-sm: 0 2px 8px -2px hsl(214 20% 70% / 0.15);
-    --shadow-md: 0 4px 16px -4px hsl(214 20% 60% / 0.2);
-    --shadow-lg: 0 8px 32px -8px hsl(214 20% 50% / 0.25);
 
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -90,13 +83,10 @@ body {
     --color-accent-foreground: hsl(var(--accent-foreground));
     --color-popover: hsl(var(--popover));
     --color-popover-foreground: hsl(var(--popover-foreground));
-    --color-card: hsl(var(--card));
-    --color-card-foreground: hsl(var(--card-foreground));
+    
+    
 
     /* Gradients, shadows, transitions, radius */
-    --shadow-sm: var(--shadow-sm);
-    --shadow-md: var(--shadow-md);
-    --shadow-lg: var(--shadow-lg);
     --transition-smooth: var(--transition-smooth);
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);

@@ -1,6 +1,7 @@
 import Navigation from '@/components/Navigation';
 import { Button } from '@/components/mess/button';
-import { BookOpen, Library, TrendingUp, Users } from 'lucide-react';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { BookCopy, BookOpen, Library, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Landing = () => {
@@ -37,33 +38,35 @@ const Landing = () => {
                 <div className="container mx-auto max-w-6xl">
                     <h2 className="mb-12 text-center text-3xl font-bold">Everything You Need</h2>
                     <div className="grid gap-8 md:grid-cols-3">
-                        <div className="bg-card rounded-xl p-6 text-center transition-shadow hover:shadow-md">
-                            <div className="bg-primary/10 mb-4 inline-flex rounded-xl p-4">
+                        <Card className="border-0 bg-white p-6 text-center transition-shadow hover:shadow-md">
+                            <CardHeader className="bg-primary/10 mb-4 inline-flex rounded-xl p-4">
                                 <Library className="text-primary h-8 w-8" />
-                            </div>
-                            <h3 className="mb-2 text-xl font-semibold">Smart Organization</h3>
-                            <p className="text-muted-foreground">
+                            </CardHeader>
+                            <CardTitle className="mb-2 text-xl">Smart Organization</CardTitle>
+                            <CardDescription className="text-md">
                                 Effortlessly categorize and search through your entire collection
-                            </p>
-                        </div>
-                        <div className="bg-card rounded-xl p-6 text-center transition-shadow hover:shadow-md">
-                            <div className="bg-primary/10 mb-4 inline-flex rounded-xl p-4">
-                                <Users className="text-primary h-8 w-8" />
-                            </div>
-                            <h3 className="mb-2 text-xl font-semibold">User Management</h3>
-                            <p className="text-muted-foreground">
-                                Track who's borrowing what and manage your reading community
-                            </p>
-                        </div>
-                        <div className="bg-card rounded-xl p-6 text-center transition-shadow hover:shadow-md">
-                            <div className="bg-primary/10 mb-4 inline-flex rounded-xl p-4">
+                            </CardDescription>
+                        </Card>
+
+                        <Card className="border-0 bg-white p-6 text-center transition-shadow hover:shadow-md">
+                            <CardHeader className="bg-primary/10 mb-4 inline-flex rounded-xl p-4">
+                                <BookCopy className="text-primary h-8 w-8" />
+                            </CardHeader>
+                            <CardTitle className="mb-2 text-xl">Book Management</CardTitle>
+                            <CardDescription className="text-md">
+                                Organize, edit, and manage your entire book collection in one place
+                            </CardDescription>
+                        </Card>
+
+                        <Card className="border-0 bg-white p-6 text-center transition-shadow hover:shadow-md">
+                            <CardHeader className="bg-primary/10 mb-4 inline-flex rounded-xl p-4">
                                 <TrendingUp className="text-primary h-8 w-8" />
-                            </div>
-                            <h3 className="mb-2 text-xl font-semibold">Reading Insights</h3>
-                            <p className="text-muted-foreground">
+                            </CardHeader>
+                            <CardTitle className="mb-2 text-xl">Reading Insights</CardTitle>
+                            <CardDescription className="text-md">
                                 Track your reading progress and discover patterns in your habits
-                            </p>
-                        </div>
+                            </CardDescription>
+                        </Card>
                     </div>
                 </div>
             </section>

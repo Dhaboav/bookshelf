@@ -1,5 +1,5 @@
-import { Card } from '@/components/mess/card';
 import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
 import type { Book } from '@/types/book';
 import { Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
