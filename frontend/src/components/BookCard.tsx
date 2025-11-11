@@ -1,5 +1,5 @@
+import { Card, CardContent, CardFooter } from '@/components/mess/card';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import type { Book } from '@/types/book';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ const BookCard = ({ book }: BookCardProps) => {
     return (
         <Link to={`/book/${book.id}`}>
             <Card className="group h-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                <div className="aspect-[3/4] overflow-hidden bg-linear-(--gradient-primary)">
+                <div className="aspect-3/4 overflow-hidden bg-linear-(--gradient-primary)">
                     {book.cover ? (
                         <img
                             src={book.cover}
@@ -20,7 +20,7 @@ const BookCard = ({ book }: BookCardProps) => {
                         />
                     ) : (
                         <div className="flex h-full w-full items-center justify-center">
-                            <span className="text-primary-foreground/50 text-6xl">📚</span>
+                            <span className="text-6xl text-white">📚</span>
                         </div>
                     )}
                 </div>
@@ -29,9 +29,7 @@ const BookCard = ({ book }: BookCardProps) => {
                         {book.title}
                     </h3>
                     <p className="text-muted-foreground mb-2 text-sm">{book.author}</p>
-                    <Badge variant="secondary" className="text-xs">
-                        {book.genre}
-                    </Badge>
+                    <Badge>{book.genre}</Badge>
                 </CardContent>
                 <CardFooter className="text-muted-foreground pt-0 text-xs">
                     Published: {book.year}

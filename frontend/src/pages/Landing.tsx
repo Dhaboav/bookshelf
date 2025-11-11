@@ -1,5 +1,5 @@
 import Navigation from '@/components/Navigation';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/mess/button';
 import { BookOpen, Library, TrendingUp, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -9,10 +9,10 @@ const Landing = () => {
             <Navigation />
 
             {/* Hero Section */}
-            <section className="h-screen bg-linear-(--gradient-hero) px-4 pt-48 pb-20">
+            <section className="h-screen bg-gray-100 px-4 pt-48 pb-20">
                 <div className="container mx-auto max-w-4xl text-center">
                     <div className="mb-6 inline-flex rounded-2xl bg-linear-(--gradient-primary) p-3">
-                        <BookOpen className="text-primary-foreground h-12 w-12" />
+                        <BookOpen className="h-12 w-12 text-white" />
                     </div>
                     <h1 className="mb-6 bg-linear-(--gradient-primary) bg-clip-text text-5xl font-bold text-transparent md:text-6xl">
                         Your Personal Library, Reimagined
@@ -47,8 +47,8 @@ const Landing = () => {
                             </p>
                         </div>
                         <div className="bg-card rounded-xl p-6 text-center transition-shadow hover:shadow-md">
-                            <div className="bg-accent/10 mb-4 inline-flex rounded-xl p-4">
-                                <Users className="text-accent h-8 w-8" />
+                            <div className="bg-primary/10 mb-4 inline-flex rounded-xl p-4">
+                                <Users className="text-primary h-8 w-8" />
                             </div>
                             <h3 className="mb-2 text-xl font-semibold">User Management</h3>
                             <p className="text-muted-foreground">
@@ -69,7 +69,7 @@ const Landing = () => {
             </section>
 
             {/* CTA Section */}
-            <section className="bg-linear-(--gradient-hero) px-4 py-20">
+            <section className="px-4 py-10">
                 <div className="container mx-auto max-w-3xl text-center">
                     <h2 className="mb-4 text-3xl font-bold">Ready to Get Started?</h2>
                     <p className="text-muted-foreground mb-8 text-lg">

@@ -1,9 +1,9 @@
 import BookCard from '@/components/BookCard';
 import BookListItem from '@/components/BookListItem';
 import Navigation from '@/components/Navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Button } from '@/components/mess/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/mess/card';
+import { Input } from '@/components/mess/input';
 import type { Book } from '@/types/book';
 import { BookOpen, LayoutGrid, Library, List, Plus, Search } from 'lucide-react';
 import { useState } from 'react';

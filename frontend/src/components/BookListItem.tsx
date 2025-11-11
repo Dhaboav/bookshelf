@@ -1,5 +1,5 @@
+import { Card } from '@/components/mess/card';
 import { Badge } from '@/components/ui/badge';
-import { Card } from '@/components/ui/card';
 import type { Book } from '@/types/book';
 import { Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,7 @@ const BookListItem = ({ book }: BookListItemProps) => {
         <Link to={`/book/${book.id}`}>
             <Card className="group p-4 transition-all duration-300 hover:shadow-md">
                 <div className="flex items-center gap-4">
-                    <div className="h-20 w-16 flex-shrink-0 overflow-hidden rounded bg-linear-(--gradient-primary)">
+                    <div className="h-20 w-16 shrink-0 overflow-hidden rounded bg-linear-(--gradient-primary)">
                         {book.cover ? (
                             <img
                                 src={book.cover}
@@ -22,7 +22,7 @@ const BookListItem = ({ book }: BookListItemProps) => {
                             />
                         ) : (
                             <div className="flex h-full w-full items-center justify-center">
-                                <span className="text-primary-foreground/50 text-2xl">📚</span>
+                                <span className="text-2xl text-white">📚</span>
                             </div>
                         )}
                     </div>
@@ -33,9 +33,7 @@ const BookListItem = ({ book }: BookListItemProps) => {
                         </h3>
                         <p className="text-muted-foreground mb-2 text-sm">{book.author}</p>
                         <div className="flex flex-wrap items-center gap-2">
-                            <Badge variant="secondary" className="text-xs">
-                                {book.genre}
-                            </Badge>
+                            <Badge>{book.genre}</Badge>
                             <span className="text-muted-foreground text-xs">{book.year}</span>
                             {book.rating && (
                                 <div className="flex items-center gap-1">

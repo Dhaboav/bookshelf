@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/mess/button';
 import { BookOpen, FileText, Home, LayoutDashboard } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ const Navigation = () => {
                 <div className="flex items-center justify-between">
                     <Link to="/" className="group flex items-center gap-2">
                         <div className="rounded-lg bg-linear-(--gradient-primary) p-2">
-                            <BookOpen className="text-primary-foreground h-6 w-6" />
+                            <BookOpen className="h-6 w-6 text-white" />
                         </div>
                         <span className="bg-linear-(--gradient-primary) bg-clip-text text-xl font-bold text-transparent">
                             MyLibrary

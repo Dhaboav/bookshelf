@@ -1,7 +1,7 @@
+import { Button } from '@/components/mess/button';
+import { Card, CardContent } from '@/components/mess/card';
 import Navigation from '@/components/Navigation';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft, Edit, Star, Trash2 } from 'lucide-react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -70,7 +70,7 @@ const BookDetail = () => {
                     {/* Book Cover */}
                     <div className="md:col-span-1">
                         <Card className="overflow-hidden">
-                            <div className="aspect-[3/4] bg-linear-(--gradient-primary)">
+                            <div className="aspect-3/4 bg-linear-(--gradient-primary)">
                                 {book.cover ? (
                                     <img
                                         src={book.cover}
@@ -95,9 +95,8 @@ const BookDetail = () => {
                             <p className="text-muted-foreground mb-4 text-xl">by {book.author}</p>
 
                             <div className="mb-6 flex items-center gap-4">
-                                <Badge variant="secondary" className="text-sm">
-                                    {book.genre}
-                                </Badge>
+                                <Badge textSize="sm">{book.genre}</Badge>
+
                                 <span className="text-muted-foreground text-sm">
                                     Published: {book.year}
                                 </span>
