@@ -1,50 +1,29 @@
 @import 'tailwindcss';
 
-
 :root {
-
     /* Fixed */
     --gradient-primary: 135deg, oklch(48.8% 0.243 264.376), oklch(82.8% 0.111 230.318);
     /* ================================== */
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
     --border: 214 30% 88%;
-    --radius: 0.75rem;
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Base element styles */
 * {
     border-color: hsl(var(--border));
 }
 
 body {
-    
     color: hsl(var(--foreground));
 }
 
-
 @theme {
-
     /* Fixed */
     /* Color Related */
     --color-primary: oklch(54.6% 0.245 262.881);
-    --color-secondary: oklch(70.8% 0 0); 
+    --color-secondary: oklch(70.8% 0 0);
     --bg-gradient-primary: var(--gradient-primary);
     /* ==================================== */
-    
 
     /* Base container */
     --container-padding: 2rem;
     --container-2xl: 1400px;
-
-    --color-popover: hsl(var(--popover));
-    --color-popover-foreground: hsl(var(--popover-foreground));
-
-    /* Gradients, shadows, transitions, radius */
-    --transition-smooth: var(--transition-smooth);
-    --radius-lg: var(--radius);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-sm: calc(var(--radius) - 4px);
 }
