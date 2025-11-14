@@ -1,4 +1,3 @@
-import Navigation from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -51,8 +50,6 @@ const EditBook = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <Navigation />
-
             <main className="container mx-auto max-w-2xl px-4 pt-24 pb-12">
                 <Button variant="hover" onClick={() => navigate(`/book/${id}`)} className="mb-6">
                     <ArrowLeft className="mr-2 h-4 w-4" />

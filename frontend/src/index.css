@@ -23,7 +23,4 @@ body {
     --bg-gradient-primary: var(--gradient-primary);
     /* ==================================== */
 
-    /* Base container */
-    --container-padding: 2rem;
-    --container-2xl: 1400px;
 }

@@ -1,11 +1,20 @@
 import BookCard from '@/components/BookCard';
 import BookListItem from '@/components/BookListItem';
-import Navigation from '@/components/Navigation';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import type { Book } from '@/types/book';
-import { BookOpen, LayoutGrid, Library, List, Plus, Search } from 'lucide-react';
+import {
+    BookOpen,
+    CalendarDays,
+    LayoutGrid,
+    Library,
+    List,
+    Plus,
+    Search,
+    UsersRound,
+} from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -117,10 +126,8 @@ const Dashboard = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            <Navigation />
-
-            <main className="container mx-auto px-4 pt-24 pb-12">
+        <div className="mx-auto">
+            <div className="container mx-auto pt-24 pb-12">
                 {/* Header */}
                 <div className="mb-8">
                     <h1 className="mb-2 text-4xl font-bold">My Library</h1>
@@ -153,19 +160,19 @@ const Dashboard = () => {
 
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Average Rating</CardTitle>
-                            <span className="text-xl">⭐</span>
+                            <CardTitle className="text-sm font-medium">Authors</CardTitle>
+                            <UsersRound className="text-muted-foreground h-4 w-4" />
                         </CardHeader>
                         <CardContent>
                             <div className="text-2xl font-bold">{avgRating}</div>
-                            <p className="text-muted-foreground text-xs">Out of 5.0</p>
+                            <p className="text-muted-foreground text-xs">Unique authors</p>
                         </CardContent>
                     </Card>
 
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Latest Year</CardTitle>
-                            <span className="text-xl">📅</span>
+                            <CalendarDays className="text-muted-foreground h-4 w-4" />
                         </CardHeader>
                         <CardContent>
                             <div className="text-2xl font-bold">
@@ -297,7 +304,7 @@ const Dashboard = () => {
                         </Button>
                     </div>
                 )}
-            </main>
+            </div>
         </div>
     );
 };

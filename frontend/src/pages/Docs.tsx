@@ -1,4 +1,3 @@
-import Navigation from '@/components/Navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { BookOpen, Edit, Eye, LayoutGrid, List, Plus, Search, Trash } from 'lucide-react';
@@ -6,8 +5,6 @@ import { BookOpen, Edit, Eye, LayoutGrid, List, Plus, Search, Trash } from 'luci
 const Docs = () => {
     return (
         <div className="min-h-screen bg-gray-50">
-            <Navigation />
-
             <main className="container mx-auto max-w-4xl px-4 pt-24 pb-12">
                 <div className="mb-8">
                     <h1 className="mb-2 text-4xl font-bold">Documentation</h1>

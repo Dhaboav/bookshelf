@@ -1,4 +1,3 @@
-import Navigation from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookCopy, BookOpen, Library, TrendingUp } from 'lucide-react';
@@ -7,8 +6,6 @@ import { Link } from 'react-router-dom';
 const Landing = () => {
     return (
         <div className="min-h-screen">
-            <Navigation />
-
             {/* Hero Section */}
             <section className="h-screen bg-gray-100 px-4 pt-48 pb-20">
                 <div className="container mx-auto max-w-4xl text-center">

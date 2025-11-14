@@ -1,3 +1,4 @@
+import MainLayout from '@/components/layout/MainLayout';
 import { Toaster } from '@/components/ui/toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -6,7 +7,7 @@ import BookDetail from './pages/BookDetail';
 import Dashboard from './pages/Dashboard';
 import Docs from './pages/Docs';
 import EditBook from './pages/EditBook';
-import Index from './pages/Index';
+import Landing from './pages/Landing';
 import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -16,13 +17,15 @@ const App = () => (
         <BrowserRouter>
             <Toaster richColors position="bottom-right" />
             <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/book/:id" element={<BookDetail />} />
-                <Route path="/books/add" element={<AddBook />} />
-                <Route path="/books/edit/:id" element={<EditBook />} />
-                <Route path="/docs" element={<Docs />} />
-                <Route path="*" element={<NotFound />} />
+                <Route element={<MainLayout />}>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/book/:id" element={<BookDetail />} />
+                    <Route path="/books/add" element={<AddBook />} />
+                    <Route path="/books/edit/:id" element={<EditBook />} />
+                    <Route path="/docs" element={<Docs />} />
+                    <Route path="*" element={<NotFound />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     </QueryClientProvider>

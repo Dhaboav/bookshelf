@@ -1,4 +1,3 @@
-import Navigation from '@/components/Navigation';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -40,7 +39,6 @@ const BookDetail = () => {
     if (!book) {
         return (
             <div className="min-h-screen bg-gray-50">
-                <Navigation />
                 <div className="container mx-auto px-4 pt-24 text-center">
                     <h1 className="mb-4 text-2xl font-bold">Book not found</h1>
                     <Button asChild>
@@ -58,8 +56,6 @@ const BookDetail = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <Navigation />
-
             <main className="container mx-auto max-w-5xl px-4 pt-24 pb-12">
                 <Button variant="hover" onClick={() => navigate('/dashboard')} className="mb-6">
                     <ArrowLeft className="mr-2 h-4 w-4" />
