@@ -3,11 +3,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import type { Book } from '@/types/book';
 import { Link } from 'react-router-dom';
 
-interface BookCardProps {
-    book: Book;
-}
-
-const BookCard = ({ book }: BookCardProps) => {
+const BookCard = (book: Book) => {
     return (
         <Link to={`/book/${book.id}`}>
             <Card className="group h-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">

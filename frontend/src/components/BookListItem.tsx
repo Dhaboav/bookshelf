@@ -4,11 +4,7 @@ import type { Book } from '@/types/book';
 import { Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-interface BookListItemProps {
-    book: Book;
-}
-
-const BookListItem = ({ book }: BookListItemProps) => {
+const BookListItem = (book: Book) => {
     return (
         <Link to={`/book/${book.id}`}>
             <Card className="group p-4 transition-all duration-300 hover:shadow-md">

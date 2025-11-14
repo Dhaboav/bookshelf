@@ -277,13 +277,13 @@ const Dashboard = () => {
                     viewMode === 'grid' ? (
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             {filteredBooks.map((book) => (
-                                <BookCard key={book.id} book={book} />
+                                <BookCard key={book.id} {...book} />
                             ))}
                         </div>
                     ) : (
                         <div className="space-y-3">
                             {filteredBooks.map((book) => (
-                                <BookListItem key={book.id} book={book} />
+                                <BookListItem key={book.id} {...book} />
                             ))}
                         </div>
                     )

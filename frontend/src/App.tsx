@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AddBook from './pages/AddBook';
@@ -13,6 +14,7 @@ const queryClient = new QueryClient();
 const App = () => (
     <QueryClientProvider client={queryClient}>
         <BrowserRouter>
+            <Toaster richColors position="bottom-right" />
             <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/dashboard" element={<Dashboard />} />

@@ -52,7 +52,7 @@ const BookDetail = () => {
     }
 
     const handleDelete = () => {
-        toast.success('Book deleted successfully');
+        toast.error(`Book ${book.title} deleted`);
         navigate('/dashboard');
     };
 
