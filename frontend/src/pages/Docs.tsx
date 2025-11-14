@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Separator } from '@/components/ui/Separator';
 import { BookOpen, Edit, Eye, LayoutGrid, List, Plus, Search, Trash } from 'lucide-react';
 
 const Docs = () => {

@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/Button';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 import { BookCopy, BookOpen, Library, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

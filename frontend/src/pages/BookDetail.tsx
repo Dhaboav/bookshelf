@@ -1,6 +1,6 @@
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent } from '@/components/ui/Card';
 import { ArrowLeft, Edit, Star, Trash2 } from 'lucide-react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'sonner';

@@ -1,5 +1,5 @@
 import MainLayout from '@/components/layout/MainLayout';
-import { Toaster } from '@/components/ui/toast';
+import { Toaster } from '@/components/ui/Toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AddBook from './pages/AddBook';

@@ -1,5 +1,5 @@
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent, CardFooter } from '@/components/ui/Card';
 import type { Book } from '@/types/book';
 import { Link } from 'react-router-dom';
 

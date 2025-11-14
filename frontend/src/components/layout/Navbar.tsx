@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { BookOpen, FileText, Home, LayoutDashboard } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
