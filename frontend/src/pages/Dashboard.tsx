@@ -1,6 +1,4 @@
-import BookCard from '@/components/BookCard';
-import BookListItem from '@/components/BookListItem';
-
+import BookItem from '@/components/layout/BookItem';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -279,18 +277,18 @@ const Dashboard = () => {
                     </Button>
                 </div>
 
-                {/* Books Display */}
+                {/* Books Item */}
                 {filteredBooks.length > 0 ? (
                     viewMode === 'grid' ? (
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             {filteredBooks.map((book) => (
-                                <BookCard key={book.id} {...book} />
+                                <BookItem key={book.id} {...book} />
                             ))}
                         </div>
                     ) : (
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                             {filteredBooks.map((book) => (
-                                <BookListItem key={book.id} {...book} />
+                                <BookItem key={book.id} variant="list" {...book} />
                             ))}
                         </div>
                     )
