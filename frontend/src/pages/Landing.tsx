@@ -24,7 +24,7 @@ const Landing = () => {
                             <Link to="/dashboard">Get Started</Link>
                         </Button>
                         <Button asChild size="lg" variant="outline">
-                            <Link to="/books/add">Add Your First Book</Link>
+                            <Link to="/book/add">Add Your First Book</Link>
                         </Button>
                     </div>
                 </div>

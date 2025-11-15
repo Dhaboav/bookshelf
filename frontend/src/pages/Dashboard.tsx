@@ -1,8 +1,3 @@
-import { BookItem } from '@/components/books/BookItem';
-import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Input } from '@/components/ui/Input';
-import type { Book } from '@/types/book';
 import {
     BookOpen,
     CalendarDays,
@@ -13,7 +8,7 @@ import {
     Search,
     UsersRound,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
     Bar,
@@ -28,279 +23,268 @@ import {
     YAxis,
 } from 'recharts';
 
-// Sample data
-const sampleBooks: Book[] = [
-    {
-        id: '1',
-        title: 'The Midnight Library',
-        author: 'Matt Haig',
-        genre: 'Fiction',
-        year: 2020,
-        description: 'A dazzling novel about all the choices that go into a life well lived.',
-    },
-    {
-        id: '2',
-        title: 'Atomic Habits',
-        author: 'James Clear',
-        genre: 'Self-Help',
-        year: 2018,
-        description: 'An easy and proven way to build good habits and break bad ones.',
-    },
-    {
-        id: '3',
-        title: 'Project Hail Mary',
-        author: 'Andy Weir',
-        genre: 'Science Fiction',
-        year: 2021,
-        description:
-            'A lone astronaut must save the earth from disaster in this amazing new sci-fi thriller.',
-    },
-    {
-        id: '4',
-        title: 'The Psychology of Money',
-        author: 'Morgan Housel',
-        genre: 'Finance',
-        year: 2020,
-        description: 'Timeless lessons on wealth, greed, and happiness.',
-    },
-];
+import { BookItem } from '@/components/books/BookItem';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Input } from '@/components/ui/Input';
+import { sampleBooks } from '@/demos/books';
+import type { Book } from '@/types/book';
 
-const Dashboard = () => {
-    const [searchQuery, setSearchQuery] = useState('');
+const COLORS = ['hsl(var(--primary))', 'hsl(var(--secondary))'];
+
+/* -------------------- TYPES -------------------- */
+interface GenreStat {
+    genre: string;
+    count: number;
+    [key: string]: string | number; // <-- FIX
+}
+
+interface YearStat {
+    year: string;
+    count: number;
+    [key: string]: string | number;
+}
+
+interface StatCardProps {
+    icon: React.ReactNode;
+    title: string;
+    value?: number;
+    subtitle: string;
+}
+
+interface ChartCardProps {
+    title: string;
+    children: React.ReactNode;
+}
+
+interface IconToggleProps {
+    icon: React.ReactNode;
+    active: boolean;
+    onClick: () => void;
+}
+
+export default function Dashboard() {
+    const [search, setSearch] = useState('');
     const [books] = useState<Book[]>(sampleBooks);
-    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+    const [view, setView] = useState<'grid' | 'list'>('grid');
 
-    const filteredBooks = books.filter(
-        (book) =>
-            book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            book.genre.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
+    // ============================================================
+    // FILTER BOOKS
+    // ============================================================
+    const filteredBooks = useMemo(() => {
+        const q = search.toLowerCase();
+        return books.filter(
+            (b) =>
+                b.title.toLowerCase().includes(q) ||
+                b.author.toLowerCase().includes(q) ||
+                b.genre.toLowerCase().includes(q),
+        );
+    }, [search, books]);
 
-    // Calculate statistics
+    // ============================================================
+    // STATISTICS
+    // ============================================================
     const totalBooks = books.length;
-    const genreData = books.reduce(
-        (acc, book) => {
-            const existing = acc.find((item) => item.genre === book.genre);
-            if (existing) {
-                existing.count += 1;
-            } else {
-                acc.push({ genre: book.genre, count: 1 });
-            }
-            return acc;
-        },
-        [] as { genre: string; count: number }[],
-    );
 
-    const yearData = books
-        .reduce(
-            (acc, book) => {
-                const yearStr = book.year.toString();
-                const existing = acc.find((item) => item.year === yearStr);
-                if (existing) {
-                    existing.count += 1;
-                } else {
-                    acc.push({ year: yearStr, count: 1 });
-                }
-                return acc;
-            },
-            [] as { year: string; count: number }[],
-        )
-        .sort((a, b) => parseInt(a.year) - parseInt(b.year));
+    const genreStats: GenreStat[] = useMemo(() => {
+        const map: Record<string, number> = {};
+        books.forEach((b) => (map[b.genre] = (map[b.genre] || 0) + 1));
+        return Object.entries(map).map(([genre, count]) => ({ genre, count }));
+    }, [books]);
 
-    const avgRating = (
-        books.reduce((sum, book) => sum + (book.rating || 0), 0) / books.length
-    ).toFixed(1);
+    const yearStats: YearStat[] = useMemo(() => {
+        const map: Record<string, number> = {};
+        books.forEach((b) => (map[b.year] = (map[b.year] || 0) + 1));
+        return Object.entries(map)
+            .map(([year, count]) => ({ year, count }))
+            .sort((a, b) => +a.year - +b.year);
+    }, [books]);
 
-    const COLORS = [
-        'hsl(var(--primary))',
-        'hsl(var(--accent))',
-        'hsl(var(--secondary))',
-        'hsl(var(--muted))',
-    ];
+    const latestYear = Math.max(...books.map((b) => b.year));
 
+    // ============================================================
+    // PIE LABEL FIX (NO OVERFLOW)
+    // ============================================================
+
+    // ============================================================
+    // RENDER
+    // ============================================================
     return (
-        <div className="mx-auto">
-            <div className="container mx-auto pt-24 pb-12">
-                {/* Header */}
-                <div className="mb-8">
-                    <h1 className="mb-2 text-4xl font-bold">My Library</h1>
-                    <p className="text-muted-foreground">Manage and explore your book collection</p>
+        <div className="container mx-auto pt-24 pb-12">
+            {/* HEADER */}
+            <div className="mb-8">
+                <h1 className="mb-2 text-4xl font-bold">My Library</h1>
+                <p className="text-muted-foreground">Manage and explore your book collection</p>
+            </div>
+
+            {/* STAT CARDS */}
+            <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <StatCard
+                    icon={<BookOpen />}
+                    title="Total Books"
+                    value={totalBooks}
+                    subtitle="In your collection"
+                />
+                <StatCard
+                    icon={<Library />}
+                    title="Genres"
+                    value={genreStats.length}
+                    subtitle="Different genres"
+                />
+                <StatCard icon={<UsersRound />} title="Authors" subtitle="Unique authors" />
+                <StatCard
+                    icon={<CalendarDays />}
+                    title="Latest Year"
+                    value={latestYear}
+                    subtitle="Most recent book"
+                />
+            </div>
+
+            {/* CHARTS */}
+            <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <ChartCard title="Books by Genre">
+                    <ResponsiveContainer width="100%" height={300}>
+                        <PieChart>
+                            <Pie
+                                data={genreStats}
+                                cx="50%"
+                                cy="50%"
+                                outerRadius={90}
+                                labelLine={false}
+                                label={(props) => {
+                                    const { payload } = props;
+                                    return (
+                                        <text
+                                            x={props.x}
+                                            y={props.y}
+                                            textAnchor={props.textAnchor}
+                                            dominantBaseline={props.dominantBaseline}
+                                        >
+                                            {(payload as GenreStat).genre}
+                                        </text>
+                                    );
+                                }}
+                                dataKey="count"
+                            >
+                                {genreStats.map((_, i) => (
+                                    <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                                ))}
+                            </Pie>
+
+                            <Tooltip
+                                formatter={(value, _, entry) => [
+                                    `${value} books`,
+                                    (entry as { payload: GenreStat }).payload.genre,
+                                ]}
+                            />
+                        </PieChart>
+                    </ResponsiveContainer>
+                </ChartCard>
+
+                <ChartCard title="Books by Year">
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={yearStats}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                            <XAxis dataKey="year" />
+                            <YAxis />
+                            <Tooltip />
+                            <Bar dataKey="count" />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </ChartCard>
+            </div>
+
+            {/* SEARCH + VIEW + ADD BUTTON */}
+            <div className="mb-8 flex flex-col items-center gap-4 sm:flex-row">
+                <div className="relative w-full flex-1">
+                    <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+                    <Input
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Search books..."
+                        className="pl-10"
+                    />
                 </div>
 
-                {/* Statistics Cards */}
-                <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Total Books</CardTitle>
-                            <BookOpen className="text-muted-foreground h-4 w-4" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">{totalBooks}</div>
-                            <p className="text-muted-foreground text-xs">In your collection</p>
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Genres</CardTitle>
-                            <Library className="text-muted-foreground h-4 w-4" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">{genreData.length}</div>
-                            <p className="text-muted-foreground text-xs">Different genres</p>
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Authors</CardTitle>
-                            <UsersRound className="text-muted-foreground h-4 w-4" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">{avgRating}</div>
-                            <p className="text-muted-foreground text-xs">Unique authors</p>
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Latest Year</CardTitle>
-                            <CalendarDays className="text-muted-foreground h-4 w-4" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">
-                                {Math.max(...books.map((b) => b.year))}
-                            </div>
-                            <p className="text-muted-foreground text-xs">Most recent book</p>
-                        </CardContent>
-                    </Card>
+                <div className="flex gap-2">
+                    <IconToggle
+                        icon={<LayoutGrid />}
+                        active={view === 'grid'}
+                        onClick={() => setView('grid')}
+                    />
+                    <IconToggle
+                        icon={<List />}
+                        active={view === 'list'}
+                        onClick={() => setView('list')}
+                    />
                 </div>
 
-                {/* Charts */}
-                <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Books by Genre</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <ResponsiveContainer width="100%" height={300}>
-                                <PieChart>
-                                    <Pie
-                                        data={genreData}
-                                        cx="50%"
-                                        cy="50%"
-                                        labelLine={false}
-                                        label={(entry) => entry.genre}
-                                        outerRadius={80}
-                                        fill="hsl(var(--primary))"
-                                        dataKey="count"
-                                    >
-                                        {genreData.map((entry, index) => (
-                                            <Cell
-                                                key={`cell-${index}`}
-                                                fill={COLORS[index % COLORS.length]}
-                                            />
-                                        ))}
-                                    </Pie>
-                                    <Tooltip />
-                                </PieChart>
-                            </ResponsiveContainer>
-                        </CardContent>
-                    </Card>
+                <Button asChild>
+                    <Link to="/book/add">
+                        <Plus className="mr-2 h-4 w-4" /> Add Book
+                    </Link>
+                </Button>
+            </div>
 
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Books by Year</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <ResponsiveContainer width="100%" height={300}>
-                                <BarChart data={yearData}>
-                                    <CartesianGrid
-                                        strokeDasharray="3 3"
-                                        stroke="hsl(var(--border))"
-                                    />
-                                    <XAxis dataKey="year" stroke="hsl(var(--muted-foreground))" />
-                                    <YAxis stroke="hsl(var(--muted-foreground))" />
-                                    <Tooltip
-                                        contentStyle={{
-                                            backgroundColor: 'hsl(var(--card))',
-                                            border: '1px solid hsl(var(--border))',
-                                            borderRadius: 'var(--radius)',
-                                        }}
-                                    />
-                                    <Bar dataKey="count" fill="hsl(var(--primary))" />
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </CardContent>
-                    </Card>
-                </div>
-
-                {/* Search, View Toggle and Add */}
-                <div className="mb-8 flex flex-col items-center gap-4 sm:flex-row">
-                    <div className="relative w-full flex-1">
-                        <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
-                        <Input
-                            placeholder="Search books by title, author, or genre..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="pl-10"
-                        />
+            {/* BOOK LIST */}
+            {filteredBooks.length ? (
+                view === 'grid' ? (
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {filteredBooks.map((b) => (
+                            <BookItem key={b.id} {...b} />
+                        ))}
                     </div>
-                    <div className="flex gap-2">
-                        <Button
-                            variant={viewMode === 'grid' ? 'default' : 'outline'}
-                            size="icon"
-                            onClick={() => setViewMode('grid')}
-                            aria-label="Grid view"
-                        >
-                            <LayoutGrid className="h-4 w-4" />
-                        </Button>
-                        <Button
-                            variant={viewMode === 'list' ? 'default' : 'outline'}
-                            size="icon"
-                            onClick={() => setViewMode('list')}
-                            aria-label="List view"
-                        >
-                            <List className="h-4 w-4" />
-                        </Button>
+                ) : (
+                    <div className="space-y-2">
+                        {filteredBooks.map((b) => (
+                            <BookItem key={b.id} variant="list" {...b} />
+                        ))}
                     </div>
-                    <Button asChild className="sm:w-auto">
-                        <Link to="/books/add">
-                            <Plus className="mr-2 h-4 w-4" />
-                            Add Book
-                        </Link>
+                )
+            ) : (
+                <div className="py-20 text-center">
+                    <p className="text-muted-foreground mb-4 text-lg">No books found.</p>
+                    <Button asChild variant="outline">
+                        <Link to="/book/add">Add Your First Book</Link>
                     </Button>
                 </div>
-
-                {/* Books Item */}
-                {filteredBooks.length > 0 ? (
-                    viewMode === 'grid' ? (
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                            {filteredBooks.map((book) => (
-                                <BookItem key={book.id} {...book} />
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="space-y-2">
-                            {filteredBooks.map((book) => (
-                                <BookItem key={book.id} variant="list" {...book} />
-                            ))}
-                        </div>
-                    )
-                ) : (
-                    <div className="py-20 text-center">
-                        <p className="text-muted-foreground mb-4 text-lg">
-                            No books found matching your search
-                        </p>
-                        <Button asChild variant="outline">
-                            <Link to="/books/add">Add Your First Book</Link>
-                        </Button>
-                    </div>
-                )}
-            </div>
+            )}
         </div>
     );
-};
+}
 
-export default Dashboard;
+/* -------------------- SMALL COMPONENTS -------------------- */
+
+function StatCard({ icon, title, value, subtitle }: StatCardProps) {
+    return (
+        <Card>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-sm font-medium">{title}</CardTitle>
+                <div className="text-muted-foreground h-4 w-4">{icon}</div>
+            </CardHeader>
+            <CardContent>
+                {value !== undefined && <div className="text-2xl font-bold">{value}</div>}
+                <p className="text-muted-foreground text-xs">{subtitle}</p>
+            </CardContent>
+        </Card>
+    );
+}
+
+function ChartCard({ title, children }: ChartCardProps) {
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle>{title}</CardTitle>
+            </CardHeader>
+            <CardContent>{children}</CardContent>
+        </Card>
+    );
+}
+
+function IconToggle({ icon, active, onClick }: IconToggleProps) {
+    return (
+        <Button variant={active ? 'default' : 'outline'} size="icon" onClick={onClick}>
+            {icon}
+        </Button>
+    );
+}

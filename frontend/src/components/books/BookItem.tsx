@@ -26,7 +26,7 @@ function BookItem({ variant = 'card', ...book }: BookItemProps) {
     const isList = variant === 'list';
 
     return (
-        <Link to={`/book/${book.id}`} className="block">
+        <Link to={`/book/detail/${book.id}`} className="block">
             <Card className={isCard ? styles.card : styles.list}>
                 <div className={isCard ? styles.coverCard : styles.coverList}>
                     {book.cover ? (

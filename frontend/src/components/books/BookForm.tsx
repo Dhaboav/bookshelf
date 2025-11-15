@@ -37,58 +37,68 @@ function BookForm({
                     }}
                 >
                     <div className="space-y-2">
-                        <Label>
+                        <Label htmlFor="bookTitle">
                             Book Title <span className="text-red-600">*</span>
                         </Label>
                         <Input
+                            id="bookTitle"
                             value={values.title}
                             onChange={(e) => onChange('title', e.target.value)}
+                            placeholder="Enter Book Title"
                             required
                         />
                     </div>
 
                     <div className="space-y-2">
-                        <Label>
+                        <Label htmlFor="bookAuthor">
                             Author <span className="text-red-600">*</span>
                         </Label>
                         <Input
+                            id="bookAuthor"
                             value={values.author}
                             onChange={(e) => onChange('author', e.target.value)}
+                            placeholder="Enter Author Name"
                             required
                         />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <Label>
+                            <Label htmlFor="bookGenre">
                                 Genre <span className="text-red-600">*</span>
                             </Label>
                             <Input
+                                id="bookGenre"
                                 value={values.genre}
                                 onChange={(e) => onChange('genre', e.target.value)}
+                                placeholder="e.g Fantasy"
                                 required
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <Label>
+                            <Label htmlFor="bookYear">
                                 Year <span className="text-red-600">*</span>
                             </Label>
                             <Input
+                                id="bookYear"
                                 type="number"
                                 value={values.year}
                                 onChange={(e) => onChange('year', Number(e.target.value))}
+                                placeholder="e.g 2021"
                                 required
                             />
                         </div>
                     </div>
 
                     <div className="space-y-2">
-                        <Label>Description</Label>
+                        <Label htmlFor="bookDesc">Description</Label>
                         <Textarea
+                            id="bookDesc"
                             rows={4}
                             value={values.description}
                             onChange={(e) => onChange('description', e.target.value)}
+                            placeholder="Enter Book Description"
                         />
                     </div>
 
