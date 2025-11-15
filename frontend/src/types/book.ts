@@ -6,5 +6,4 @@ export interface Book {
     year: number;
     cover?: string;
     description?: string;
-    rating?: number;
 }

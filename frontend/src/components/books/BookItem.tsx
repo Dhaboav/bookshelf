@@ -63,4 +63,4 @@ function BookItem({ variant = 'card', ...book }: BookItemProps) {
     );
 }
 
-export default BookItem;
+export { BookItem };

@@ -1,15 +1,13 @@
+import { BookForm } from '@/components/books/BookForm';
 import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Input } from '@/components/ui/Input';
-import { Label } from '@/components/ui/Label';
-import { Textarea } from '@/components/ui/Textarea';
+import type { BookFormValues } from '@/hooks/useBookForm';
+import { useBookForm } from '@/hooks/useBookForm';
 import { ArrowLeft } from 'lucide-react';
-import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 
-// Sample book data - in real app, fetch by ID
-const sampleBooks = [
+// Sample book data - nanti bisa diganti fetch API by ID
+const sampleBooks: (BookFormValues & { id: string })[] = [
     {
         id: '1',
         title: 'The Midnight Library',
@@ -17,36 +15,30 @@ const sampleBooks = [
         genre: 'Fiction',
         year: 2020,
         description: 'A dazzling novel about all the choices that go into a life well lived.',
-        rating: 4.5,
     },
 ];
 
 const EditBook = () => {
-    const { id } = useParams();
+    const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
+
     const book = sampleBooks.find((b) => b.id === id);
 
-    const [formData, setFormData] = useState({
-        title: book?.title || '',
-        author: book?.author || '',
-        genre: book?.genre || '',
-        year: book?.year || new Date().getFullYear(),
-        description: book?.description || '',
-        rating: book?.rating?.toString() || '',
+    // Gunakan hook useBookForm untuk logic
+    const { formData, handleChange, handleSubmit } = useBookForm({
+        initialData: {
+            title: book?.title || '',
+            author: book?.author || '',
+            genre: book?.genre || '',
+            year: book?.year || new Date().getFullYear(),
+            description: book?.description || '',
+        },
+        onSubmitCallback: (data) => {
+            toast.success('Book updated successfully!');
+            console.log('Updated book:', data);
+            navigate(`/book/${id}`);
+        },
     });
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        toast.success('Book updated successfully!');
-        navigate(`/book/${id}`);
-    };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -56,105 +48,14 @@ const EditBook = () => {
                     Back to Book
                 </Button>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="text-2xl">Edit Book</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="space-y-2">
-                                <Label htmlFor="title">Book Title *</Label>
-                                <Input
-                                    id="title"
-                                    name="title"
-                                    value={formData.title}
-                                    onChange={handleChange}
-                                    placeholder="Enter book title"
-                                    required
-                                />
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="author">Author *</Label>
-                                <Input
-                                    id="author"
-                                    name="author"
-                                    value={formData.author}
-                                    onChange={handleChange}
-                                    placeholder="Enter author name"
-                                    required
-                                />
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="genre">Genre *</Label>
-                                    <Input
-                                        id="genre"
-                                        name="genre"
-                                        value={formData.genre}
-                                        onChange={handleChange}
-                                        placeholder="e.g., Fiction"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="space-y-2">
-                                    <Label htmlFor="year">Year Published</Label>
-                                    <Input
-                                        id="year"
-                                        name="year"
-                                        type="number"
-                                        value={formData.year}
-                                        onChange={handleChange}
-                                        placeholder="2024"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="rating">Rating (0-5)</Label>
-                                <Input
-                                    id="rating"
-                                    name="rating"
-                                    type="number"
-                                    step="0.1"
-                                    min="0"
-                                    max="5"
-                                    value={formData.rating}
-                                    onChange={handleChange}
-                                    placeholder="4.5"
-                                />
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="description">Description</Label>
-                                <Textarea
-                                    id="description"
-                                    name="description"
-                                    value={formData.description}
-                                    onChange={handleChange}
-                                    placeholder="Enter book description..."
-                                    rows={5}
-                                />
-                            </div>
-
-                            <div className="flex gap-3 pt-4">
-                                <Button type="submit" className="flex-1">
-                                    Update Book
-                                </Button>
-                                <Button
-                                    type="button"
-                                    variant="delete"
-                                    onClick={() => navigate(`/book/${id}`)}
-                                    className="flex-1"
-                                >
-                                    Cancel
-                                </Button>
-                            </div>
-                        </form>
-                    </CardContent>
-                </Card>
+                <BookForm
+                    titleForm="Edit Book"
+                    values={formData}
+                    btnSaveTitle="Update Book"
+                    onChange={(field, value) => handleChange(field as keyof BookFormValues, value)}
+                    onSubmit={handleSubmit}
+                    onCancel={() => navigate(`/book/${id}`)}
+                />
             </main>
         </div>
     );

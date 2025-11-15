@@ -1,4 +1,4 @@
-import BookItem from '@/components/layout/BookItem';
+import { BookItem } from '@/components/books/BookItem';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
@@ -37,7 +37,6 @@ const sampleBooks: Book[] = [
         genre: 'Fiction',
         year: 2020,
         description: 'A dazzling novel about all the choices that go into a life well lived.',
-        rating: 4.5,
     },
     {
         id: '2',
@@ -46,7 +45,6 @@ const sampleBooks: Book[] = [
         genre: 'Self-Help',
         year: 2018,
         description: 'An easy and proven way to build good habits and break bad ones.',
-        rating: 4.8,
     },
     {
         id: '3',
@@ -56,7 +54,6 @@ const sampleBooks: Book[] = [
         year: 2021,
         description:
             'A lone astronaut must save the earth from disaster in this amazing new sci-fi thriller.',
-        rating: 4.7,
     },
     {
         id: '4',
@@ -65,7 +62,6 @@ const sampleBooks: Book[] = [
         genre: 'Finance',
         year: 2020,
         description: 'Timeless lessons on wealth, greed, and happiness.',
-        rating: 4.6,
     },
 ];
 
