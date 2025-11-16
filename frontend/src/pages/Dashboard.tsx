@@ -6,6 +6,8 @@ import {
     List,
     Plus,
     Search,
+    Tags,
+    Users,
     UsersRound,
 } from 'lucide-react';
 import { useMemo, useState } from 'react';
@@ -86,6 +88,12 @@ export default function Dashboard() {
     // ============================================================
     const totalBooks = books.length;
 
+    // Calculate unique authors
+    const uniqueAuthors = new Set(books.map((book) => book.author)).size;
+
+    // Calculate unique genres
+    const uniqueGenres = new Set(books.map((book) => book.genre)).size;
+
     const genreStats: GenreStat[] = useMemo(() => {
         const map: Record<string, number> = {};
         books.forEach((b) => (map[b.genre] = (map[b.genre] || 0) + 1));
@@ -117,6 +125,37 @@ export default function Dashboard() {
                 <p className="text-muted-foreground">Manage and explore your book collection</p>
             </div>
 
+            <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <Card className="cursor-pointer transition-shadow hover:shadow-lg">
+                    <Link to="/authors">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Manage Authors</CardTitle>
+                            <Users className="text-muted-foreground h-4 w-4" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{uniqueAuthors}</div>
+                            <p className="text-muted-foreground text-xs">
+                                Click to add or edit authors
+                            </p>
+                        </CardContent>
+                    </Link>
+                </Card>
+                <Card className="cursor-pointer transition-shadow hover:shadow-lg">
+                    <Link to="/genres">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Manage Genres</CardTitle>
+                            <Tags className="text-muted-foreground h-4 w-4" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{uniqueGenres}</div>
+                            <p className="text-muted-foreground text-xs">
+                                Click to add or edit genres
+                            </p>
+                        </CardContent>
+                    </Link>
+                </Card>
+            </div>
+
             {/* STAT CARDS */}
             <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 <StatCard
@@ -131,7 +170,12 @@ export default function Dashboard() {
                     value={genreStats.length}
                     subtitle="Different genres"
                 />
-                <StatCard icon={<UsersRound />} title="Authors" subtitle="Unique authors" />
+                <StatCard
+                    icon={<UsersRound />}
+                    title="Authors"
+                    value={uniqueAuthors}
+                    subtitle="Unique authors"
+                />
                 <StatCard
                     icon={<CalendarDays />}
                     title="Latest Year"
