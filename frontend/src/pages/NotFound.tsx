@@ -3,7 +3,7 @@ import { Home, Search } from 'lucide-react';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const NotFound = () => {
+function NotFound() {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -45,6 +45,6 @@ const NotFound = () => {
             </div>
         </div>
     );
-};
+}
 
 export default NotFound;

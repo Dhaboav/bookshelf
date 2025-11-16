@@ -65,7 +65,7 @@ interface IconToggleProps {
     onClick: () => void;
 }
 
-export default function Dashboard() {
+function Dashboard() {
     const [search, setSearch] = useState('');
     const [books] = useState<Book[]>(sampleBooks);
     const [view, setView] = useState<'grid' | 'list'>('grid');
@@ -332,3 +332,5 @@ function IconToggle({ icon, active, onClick }: IconToggleProps) {
         </Button>
     );
 }
+
+export default Dashboard;

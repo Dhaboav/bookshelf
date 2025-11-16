@@ -3,7 +3,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/Ca
 import { BookCopy, BookOpen, Library, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const Landing = () => {
+function Landing() {
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
@@ -82,6 +82,6 @@ const Landing = () => {
             </section>
         </div>
     );
-};
+}
 
 export default Landing;

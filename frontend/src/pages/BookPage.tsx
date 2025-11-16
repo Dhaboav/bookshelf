@@ -1,13 +1,13 @@
 import { BookDetail } from '@/components/books/BookDetail';
 import { BookForm } from '@/components/books/BookForm';
-import { BookLayout } from '@/components/layout/BookLayout';
+import { BookLayout } from '@/components/books/BookLayout';
 import { useBookPage } from '@/hooks/useBookPage';
 
 interface Props {
     mode: 'add' | 'edit' | 'detail';
 }
 
-export default function BookPage({ mode }: Props) {
+function BookPage({ mode }: Props) {
     const { book, formData, handleSubmit, handleChange, handleDelete, goBack, notFound } =
         useBookPage(mode);
 
@@ -44,3 +44,5 @@ export default function BookPage({ mode }: Props) {
         </BookLayout>
     );
 }
+
+export default BookPage;

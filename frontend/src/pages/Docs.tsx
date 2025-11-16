@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Separator } from '@/components/ui/Separator';
 import { BookOpen, Edit, Eye, LayoutGrid, List, Plus, Search, Trash } from 'lucide-react';
 
-const Docs = () => {
+function Docs() {
     return (
         <div className="min-h-screen bg-gray-50">
             <main className="container mx-auto max-w-4xl px-4 pt-24 pb-12">
@@ -264,6 +264,6 @@ const Docs = () => {
             </main>
         </div>
     );
-};
+}
 
 export default Docs;

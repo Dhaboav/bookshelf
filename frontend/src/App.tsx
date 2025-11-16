@@ -7,6 +7,7 @@ import BookPage from '@/pages/BookPage';
 import Dashboard from '@/pages/Dashboard';
 import Docs from '@/pages/Docs';
 import Landing from '@/pages/Landing';
+import ManagePage from '@/pages/Manage';
 import NotFound from '@/pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -23,6 +24,9 @@ const App = () => (
                     <Route path="/book/add" element={<BookPage mode="add" />} />
                     <Route path="/book/edit/:id" element={<BookPage mode="edit" />} />
                     <Route path="/book/detail/:id" element={<BookPage mode="detail" />} />
+
+                    <Route path="/authors" element={<ManagePage mode="Author" />} />
+                    <Route path="/genres" element={<ManagePage mode="Genre" />} />
 
                     <Route path="/docs" element={<Docs />} />
                     <Route path="*" element={<NotFound />} />
